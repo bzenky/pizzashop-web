@@ -17,7 +17,9 @@ test('sign up successfully', async ({ page }) => {
   expect(toast).toBeVisible()
 
   await page.getByRole('button', { name: 'Close' }).click()
+  await page.waitForTimeout(250) // timeout to ensure that the dialog is closed
   const updatedName = page.getByRole('button', { name: 'Xablau' })
+
   expect(updatedName).toBeVisible()
 })
 
