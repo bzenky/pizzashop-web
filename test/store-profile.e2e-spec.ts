@@ -14,13 +14,13 @@ test('sign up successfully', async ({ page }) => {
   await page.waitForLoadState('networkidle')
 
   const toast = page.getByText('Perfil atualizado com sucesso.')
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 
   await page.getByRole('button', { name: 'Close' }).click()
-  await page.waitForTimeout(250) // timeout to ensure that the dialog is closed
+
   const updatedName = page.getByRole('button', { name: 'Xablau' })
 
-  expect(updatedName).toBeVisible()
+  await expect(updatedName).toBeVisible()
 })
 
 test('sign up with error', async ({ page }) => {
@@ -38,5 +38,5 @@ test('sign up with error', async ({ page }) => {
 
   const toast = page.getByText('Falha ao atualizar o perfil, tente novamente!')
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
